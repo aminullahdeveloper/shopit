@@ -6,6 +6,13 @@ import { useAlert } from "react-alert";
 import { logout } from "../../actions/userActions";
 // import About from "../about/About";
 
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
+
 import Search from "./Search";
 
 import "../../App.css";
@@ -16,6 +23,16 @@ const Header = () => {
 
   const { user, loading } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickToOpen = () => {
+    setOpen(true);
+  };
+
+  const handleToClose = () => {
+    setOpen(false);
+  };
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -92,45 +109,57 @@ const Header = () => {
                   Profile
                 </Link>
                 <Link className="dropdown-item" to="/contact">
-                  About Us
+                  Contact Us
                 </Link>
-                <Link
-                  className="dropdown-item text-danger"
-                  to="/"
-                  onClick={logoutHandler}
-                >
-                  Logout
+                <Link className="dropdown-item" to="/">
+                  <div>
+                    <Button
+                      className="btn btn-primary text-danger"
+                      onClick={handleClickToOpen}
+                    >
+                      Logout
+                    </Button>
+                    <Dialog
+                      open={open}
+                      onClose={handleToClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                    >
+                      <DialogTitle id="alert-dialog-title">
+                        {"Logout?"}
+                      </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                          Are you sure you want to Logout?
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button
+                          className="btn btn-danger"
+                          onClick={logoutHandler}
+                          autoFocus
+                        >
+                          Logout
+                        </Button>
+                        <Button onClick={handleToClose}>Cancel</Button>
+                      </DialogActions>
+                    </Dialog>
+                  </div>
                 </Link>
               </div>
             </div>
           ) : (
             !loading && (
-              <Link to="/login" className="btn ml-4" id="login_btn">
+              <Link
+                to="/login"
+                className="btn ml-4"
+                id="login_btn"
+                onClick={handleToClose}
+              >
                 Login
               </Link>
             )
           )}
-          {/* ......................................................... */}
-          {/* <div className="menu">
-            {user && user.role === "admin" && (
-              <Link className="dropdown-item text-success" to="/dashboard">
-                Dashboard
-              </Link>
-            )}
-            {user && user.role === "vendor" && (
-              <Link className="dropdown-item text-success" to="/vdashboard">
-                Vendor Panel
-              </Link>
-            )}
-            <Link
-              className="dropdown-item text-danger"
-              to="/"
-              onClick={logoutHandler}
-            >
-              Logout
-            </Link>
-          </div> */}
-
           {/* ......................................................... */}
         </div>
       </nav>

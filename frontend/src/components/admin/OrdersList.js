@@ -15,6 +15,13 @@ import {
 } from "../../actions/orderActions";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
+
 const OrdersList = ({ history }) => {
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -36,6 +43,16 @@ const OrdersList = ({ history }) => {
       dispatch({ type: DELETE_ORDER_RESET });
     }
   }, [dispatch, alert, error, isDeleted, history]);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickToOpen = () => {
+    setOpen(true);
+  };
+
+  const handleToClose = () => {
+    setOpen(false);
+  };
 
   const deleteOrderHandler = (id) => {
     dispatch(deleteOrder(id));
@@ -97,10 +114,35 @@ const OrdersList = ({ history }) => {
               </Link>
               <button
                 className="btn btn-danger py-1 px-2 ml-2"
-                onClick={() => deleteOrderHandler(order._id)}
+                onClick={handleClickToOpen}
               >
                 <i className="fa fa-trash"></i>
               </button>
+
+              {/* <Button color="primary" onClick={handleClickToOpen}>
+                <i className="fa fa-trash btn btn-danger "></i>
+              </Button> */}
+
+              <Dialog open={open} onClose={handleToClose}>
+                <DialogTitle>{"Delete"}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Are you sure you want to Delete?
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <button
+                    id="delete"
+                    className="btn btn-danger py-1 px-2 ml-2"
+                    onClick={() => deleteOrderHandler(order._id)}
+                  >
+                    Delete
+                  </button>
+                  <Button onClick={handleToClose} color="primary">
+                    Close
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </Fragment>
           ),
         });
