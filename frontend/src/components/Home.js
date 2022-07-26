@@ -19,25 +19,25 @@ const Range = createSliderWithTooltip(Slider.Range);
 const Home = ({ match }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([1, 100000]);
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
 
-  const categories = [
-    "Default",
-    "Motherboard",
-    "Central Processing Unit (CPU)",
-    "Random Access Memory (RAM)",
-    "Hard Disk Drive (HDD)",
-    "Solid-State Drive (SSD)",
-    "Laptop",
-    "Cooling Fans",
-    "Processor",
-    "Graphic Card",
-    "Gaming Mouse",
-    "Gaming Headsets",
-    "PC Casings",
-    "Keyboards",
-    "LED",
-  ];
+  // const categories = [
+  //   "Default",
+  //   "Motherboard",
+  //   "Central Processing Unit (CPU)",
+  //   "Random Access Memory (RAM)",
+  //   "Hard Disk Drive (HDD)",
+  //   "Solid-State Drive (SSD)",
+  //   "Laptop",
+  //   "Cooling Fans",
+  //   "Processor",
+  //   "Graphic Card",
+  //   "Gaming Mouse",
+  //   "Gaming Headsets",
+  //   "PC Casings",
+  //   "Keyboards",
+  //   "LED",
+  // ];
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -58,8 +58,10 @@ const Home = ({ match }) => {
       return alert.error(error);
     }
 
-    dispatch(getProducts(keyword, currentPage, price, category));
-  }, [dispatch, alert, error, keyword, currentPage, price, category]);
+    //   dispatch(getProducts(keyword, currentPage, price, category));
+    // }, [dispatch, alert, error, keyword, currentPage, price, category]);
+    dispatch(getProducts(keyword, currentPage, price));
+  }, [dispatch, alert, error, keyword, currentPage, price]);
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
@@ -84,7 +86,7 @@ const Home = ({ match }) => {
             <div className="row">
               {keyword ? (
                 <Fragment>
-                  <div className="col-6 col-md-3 mt-5 mb-5">
+                  {/* <div className="col-6 col-md-3 mt-5 mb-5">
                     <div className="ps-5">
                       <Range
                         marks={{
@@ -124,7 +126,7 @@ const Home = ({ match }) => {
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-6 col-md-9">
                     <div className="row">
