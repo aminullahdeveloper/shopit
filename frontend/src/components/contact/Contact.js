@@ -85,7 +85,7 @@ const Contact = () => {
           <p style={{ color: "white" }}>techdev45@outlook.com</p>
 
           <h2 style={{ color: "#f85706d3" }}>Phone</h2>
-          <p style={{ color: "white" }}>+923334455666</p>
+          <p style={{ color: "white" }}>+923335966654</p>
         </div>
         <div className="col-lg-4 payment-type">
           <h2 style={{ color: "#f85706d3" }}>Payment Method</h2>
