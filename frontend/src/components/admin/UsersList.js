@@ -11,12 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { allUsers, deleteUser, clearErrors } from "../../actions/userActions";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Button from "@material-ui/core/Button";
+// import Dialog from "@material-ui/core/Dialog";
+// import DialogTitle from "@material-ui/core/DialogTitle";
+// import DialogActions from "@material-ui/core/DialogActions";
+// import DialogContent from "@material-ui/core/DialogContent";
+// import Button from "@material-ui/core/Button";
 
 const UsersList = ({ history }) => {
   const alert = useAlert();
@@ -40,15 +39,15 @@ const UsersList = ({ history }) => {
     }
   }, [dispatch, alert, error, isDeleted, history]);
 
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen, onConfirm] = React.useState(false);
 
-  const handleClickToOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickToOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleToClose = () => {
-    setOpen(false);
-  };
+  // const handleToClose = () => {
+  //   setOpen(false);
+  // };
 
   const deleteUserHandler = (id) => {
     dispatch(deleteUser(id));
@@ -103,39 +102,47 @@ const UsersList = ({ history }) => {
               >
                 <i className="fa fa-pencil"></i>
               </Link>
-              {/* <button
+              <button
                 className="btn btn-danger py-1 px-2 ml-2"
                 onClick={() => deleteUserHandler(user._id)}
               >
                 <i className="fa fa-trash"></i>
-              </button> */}
-              <Button className=" py-2 px-1 ml-2" onClick={handleClickToOpen}>
-                <i className="fa fa-trash btn btn-danger "></i>
-              </Button>
+              </button>
+              {/* <button
+                className="btn btn-danger py-1 px-2 ml-2"
+                onClick={handleClickToOpen}
+              >
+                <i className="fa fa-trash"></i>
+              </button>
               <Dialog
                 open={open}
-                onClose={handleToClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
+                onClose={() => setOpen(false)}
+                aria-labelledby="confirm-dialog"
               >
-                <DialogTitle id="alert-dialog-title">{"Delete?"}</DialogTitle>
+                <DialogTitle id="confirm-dialog">{"Delete"}</DialogTitle>
                 <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Are you sure you want to Delete?
-                  </DialogContentText>
+                  {"Are you sure you want to Delete?"}
                 </DialogContent>
                 <DialogActions>
                   <Button
-                    id="delete"
-                    className="btn btn-danger"
-                    onClick={() => deleteUserHandler(user._id)}
-                    autoFocus
+                    variant="contained"
+                    onClick={() => {
+                      setOpen(false);
+                      onConfirm(deleteUserHandler(user._id));
+                    }}
+                    color="secondary"
                   >
-                    Delete
+                    Yes
                   </Button>
-                  <Button onClick={handleToClose}>Cancel</Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => setOpen(false)}
+                    color="default"
+                  >
+                    No
+                  </Button>
                 </DialogActions>
-              </Dialog>
+              </Dialog> */}
             </Fragment>
           ),
         });

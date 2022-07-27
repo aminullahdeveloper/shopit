@@ -11,12 +11,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { allVendors, deleteUser, clearErrors } from "../../actions/userActions";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Button from "@material-ui/core/Button";
+// import Dialog from "@material-ui/core/Dialog";
+// import DialogContentText from "@material-ui/core/DialogContentText";
+// import DialogTitle from "@material-ui/core/DialogTitle";
+// import DialogActions from "@material-ui/core/DialogActions";
+// import DialogContent from "@material-ui/core/DialogContent";
+// import Button from "@material-ui/core/Button";
 
 const VendorsList = ({ history }) => {
   const alert = useAlert();
@@ -40,15 +40,15 @@ const VendorsList = ({ history }) => {
     }
   }, [dispatch, alert, error, isDeleted, history]);
 
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleClickToOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickToOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleToClose = () => {
-    setOpen(false);
-  };
+  // const handleToClose = () => {
+  //   setOpen(false);
+  // };
 
   const deleteUserHandler = (id) => {
     dispatch(deleteUser(id));
@@ -103,14 +103,14 @@ const VendorsList = ({ history }) => {
               >
                 <i className="fa fa-pencil"></i>
               </Link>
-              {/* <button
+              <button
                 className="btn btn-danger py-1 px-2 ml-2"
                 onClick={() => deleteUserHandler(vendor._id)}
               >
                 <i className="fa fa-trash"></i>
-              </button> */}
+              </button>
 
-              <Button className=" py-2 px-1 ml-2" onClick={handleClickToOpen}>
+              {/* <Button className=" py-2 px-1 ml-2" onClick={handleClickToOpen}>
                 <i className="fa fa-trash  btn btn-danger"></i>
               </Button>
               <Dialog
@@ -136,7 +136,7 @@ const VendorsList = ({ history }) => {
                   </Button>
                   <Button onClick={handleToClose}>Cancel</Button>
                 </DialogActions>
-              </Dialog>
+              </Dialog> */}
             </Fragment>
           ),
         });

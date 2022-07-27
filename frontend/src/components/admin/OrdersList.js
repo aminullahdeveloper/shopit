@@ -16,7 +16,6 @@ import {
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 
 import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -50,9 +49,9 @@ const OrdersList = ({ history }) => {
     setOpen(true);
   };
 
-  const handleToClose = () => {
-    setOpen(false);
-  };
+  // const handleToClose = () => {
+  //   setOpen(false);
+  // };
 
   const deleteOrderHandler = (id) => {
     dispatch(deleteOrder(id));
@@ -112,6 +111,13 @@ const OrdersList = ({ history }) => {
               >
                 <i className="fa fa-eye"></i>
               </Link>
+              {/* <button
+                className="btn btn-danger py-1 px-2 ml-2"
+                onClick={() => deleteOrderHandler(order._id)}
+              >
+                <i className="fa fa-trash"></i>
+              </button> */}
+
               <button
                 className="btn btn-danger py-1 px-2 ml-2"
                 onClick={handleClickToOpen}
@@ -119,27 +125,32 @@ const OrdersList = ({ history }) => {
                 <i className="fa fa-trash"></i>
               </button>
 
-              {/* <Button color="primary" onClick={handleClickToOpen}>
-                <i className="fa fa-trash btn btn-danger "></i>
-              </Button> */}
-
-              <Dialog open={open} onClose={handleToClose}>
-                <DialogTitle>{"Delete"}</DialogTitle>
+              <Dialog
+                open={open}
+                onClose={() => setOpen(false)}
+                aria-labelledby="confirm-dialog"
+              >
+                <DialogTitle id="confirm-dialog">{"Delete"}</DialogTitle>
                 <DialogContent>
-                  <DialogContentText>
-                    Are you sure you want to Delete?
-                  </DialogContentText>
+                  {"Are you sure you want to Delete?"}
                 </DialogContent>
                 <DialogActions>
-                  <button
-                    id="delete"
-                    className="btn btn-danger py-1 px-2 ml-2"
-                    onClick={() => deleteOrderHandler(order._id)}
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      setOpen(false);
+                      deleteOrderHandler(order._id);
+                    }}
+                    color="secondary"
                   >
-                    Delete
-                  </button>
-                  <Button onClick={handleToClose} color="primary">
-                    Close
+                    Yes
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => setOpen(false)}
+                    color="default"
+                  >
+                    No
                   </Button>
                 </DialogActions>
               </Dialog>
