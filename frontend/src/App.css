@@ -34,9 +34,27 @@ nav {
   padding: 1rem 1rem;
 }
 
+
+.navbar-btn{
+display: flex;
+gap: 2rem;
+color: #fff;
+}
+.nav-btn:hover{
+color: #f85606;
+}
+#nav-btn{
+  color: #fff;
+}
+#nav-btn:hover{
+  color: #f85606;
+}
+
+
+
 .input-group {
   width: 90%;
-  margin-right: 35%;
+  
 }
 
 #search_field {
@@ -810,4 +828,8 @@ textarea{
 }
 .footer{
   height:30vh;
+}
+
+#serach{
+  align-items: right;
 }

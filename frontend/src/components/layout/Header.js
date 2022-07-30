@@ -45,12 +45,40 @@ const Header = () => {
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
             <Link to="/">
-              <img src="/images/logo.png" style={{ width: "130px" }} />
+              <img src="/images/logo.png" style={{ width: "170px" }} />
+            </Link>
+          </div>
+        </div>
+        <div className="col-12 col-md-3">
+          <div className="navbar-btn">
+            <Link
+              className="nav-btn"
+              id="nav-btn"
+              style={{ textDecoration: "none" }}
+              to="/orders/me"
+            >
+              My Orders
+            </Link>
+            <Link
+              className="nav-btn"
+              id="nav-btn"
+              style={{ textDecoration: "none" }}
+              to="/me"
+            >
+              Profile
+            </Link>
+            <Link
+              className="nav-btn"
+              id="nav-btn"
+              style={{ textDecoration: "none" }}
+              to="/contact"
+            >
+              Contact Us
             </Link>
           </div>
         </div>
 
-        <div className="col-12 col-md-6 mt-2 mt-md-0">
+        <div className="col-12 col-md-3 mt-2 mt-md-0" id="search">
           <Route render={({ history }) => <Search history={history} />} />
         </div>
 
@@ -102,7 +130,7 @@ const Header = () => {
                     Vendor Panel
                   </Link>
                 )}
-                <Link className="dropdown-item " to="/orders/me">
+                {/* <Link className="dropdown-item " to="/orders/me">
                   Orders
                 </Link>
                 <Link className="dropdown-item" to="/me">
@@ -110,7 +138,7 @@ const Header = () => {
                 </Link>
                 <Link className="dropdown-item" to="/contact">
                   Contact Us
-                </Link>
+                </Link> */}
                 <Link className="dropdown-item" to="/">
                   <div>
                     <Button
